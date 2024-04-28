@@ -1,6 +1,8 @@
 operation = <<~GQL
 query {
-    testField
+    repo(id:"1"){
+        name
+    }
 }
 GQL
 
