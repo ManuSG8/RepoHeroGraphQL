@@ -7,5 +7,10 @@ module Types
     field :url, String
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+    field :name_reversed, String, null: false
+
+    def name_reversed
+      object.name.reverse
+    end
   end
 end

@@ -7,6 +7,7 @@ RSpec.describe "Graphql, repo query" do
         query ($id: ID!) {
             repo(id: $id) {
                 name
+                nameReversed
                 url
             }
         }
@@ -16,6 +17,7 @@ RSpec.describe "Graphql, repo query" do
         expect(response.parsed_body["data"]).to eq(
             "repo" => {
                 "name" => repo.name,
+                "nameReversed" => repo.name.reverse,
                 "url" => repo.url,
             }
         )
