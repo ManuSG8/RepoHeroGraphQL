@@ -23,7 +23,7 @@ module Types
 
     field :repos, [RepoType], null: false
 
-    field :repo, RepoType, null: false do
+    field :repo, RepoResultType, null: false do
       argument :id, ID, required: true
     end
 
@@ -36,7 +36,7 @@ module Types
     end
 
     def repo(id:)
-      Repo.find(id)
+      Repo.find_by(id: id) || { message: "Could not find a repository with id='#{id}'" }
     end
 
     def category(id:)
