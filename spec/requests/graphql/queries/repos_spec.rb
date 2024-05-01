@@ -4,16 +4,15 @@ RSpec.describe "Graphql, repos query" do
 	"https://github.com/repohero/repohero") }
 	it "retrieves a list of available repos" do
 		query = <<~QUERY
-		query {
-			repos {
-				name
-				url
+			query {
+				repos {
+					name
+					url
 			}
 		}
 		QUERY
-
 		post "/graphql", params: { query: query }
-		expect(response.parsed_body["errors"]).to be_blank
+		expect(response.parsed_body).not_to have_errors
 		expect(response.parsed_body["data"]).to eq(
 			"repos" => [
 				{
