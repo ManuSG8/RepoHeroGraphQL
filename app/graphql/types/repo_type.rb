@@ -9,6 +9,8 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :categories, [CategoryType], null: false
 
+    field :reviews, ReviewType.connection_type, null: false, default_page_size: 10
+
     field :name_reversed, String, null: false, complexity: 10 # Esto indica que va a sumar +10 al complexity, no 1 como es por defecto. Ejemplo:
     # query {
     #   repo(id: 1) { +1
