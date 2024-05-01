@@ -1,7 +1,11 @@
 operation = <<~GQL
 query {
-    repo(id:"1"){
+    category(id: "1") {
         name
+        repos {
+            name
+            url
+        }
     }
 }
 GQL
