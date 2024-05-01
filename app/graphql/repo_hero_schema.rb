@@ -17,6 +17,9 @@ class RepoHeroSchema < GraphQL::Schema
   # } TOTAL: 4 puntos
   max_complexity 100
 
+  # Limitar el numero de elementos por pagina a nivel global. Se puede reescribir
+  max_page_size 20
+
   # For batch-loading (see https://graphql-ruby.org/dataloader/overview.html)
   use GraphQL::Dataloader
 
