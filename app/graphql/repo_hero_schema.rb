@@ -4,6 +4,19 @@ class RepoHeroSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
 
+  # Nivel de anidacion maxima permitida
+  max_depth 15
+
+  # Define cuantos campos distintos se permiten. En este ejemplo hay 4 diferentes
+  # query {
+  #   repo(id: 1) { +1
+  #     name +1
+  #     url +1
+  #     nameReversed +1
+  #   }
+  # } TOTAL: 4 puntos
+  max_complexity 100
+
   # For batch-loading (see https://graphql-ruby.org/dataloader/overview.html)
   use GraphQL::Dataloader
 
