@@ -11,6 +11,8 @@ module Types
 
     field :reviews, ReviewType.connection_type, null: false, default_page_size: 10, max_page_size: 50 # Con max_page_size: 50 le decimos que no mas de 50 reviews seran mostradas. Sobreescribe lo asignado en repo_hero_schema.rb
 
+    field :activities, ActivityType.connection_type, null: false
+
     field :name_reversed, String, null: false, complexity: 10 # Esto indica que va a sumar +10 al complexity, no 1 como es por defecto. Ejemplo:
     # query {
     #   repo(id: 1) { +1
