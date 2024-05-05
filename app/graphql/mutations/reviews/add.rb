@@ -3,10 +3,10 @@ module Mutations
         class Add < BaseMutation
             include Dry::Monads[:result]
 
+            type Types::AddReviewResult, null: false
+
             graphql_name "AddReview"
 
-            type Types::AddReviewResult, null: false
-            
             argument :repo_id, ID, required: true
             argument :rating, Types::ReviewRating, required: true
             argument :comment, String, required: true
@@ -17,6 +17,7 @@ module Mutations
                     rating: rating,
                     comment: comment,
                 )
+                review.user = context[:current_user]
                 
                 if review.save
                     Success(review)
