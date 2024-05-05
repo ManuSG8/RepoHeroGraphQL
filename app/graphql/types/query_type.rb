@@ -31,6 +31,8 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :me, AuthenticatedUserType, null: true
+
     def repos
       Repo.all
     end
@@ -41,6 +43,10 @@ module Types
 
     def category(id:)
       Category.find(id)
+    end
+
+    def me
+      context[:current_user]
     end
     
   end

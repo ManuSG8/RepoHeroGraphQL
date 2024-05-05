@@ -4,7 +4,7 @@ module Types
         field :token, String, null: true
 
         def token
-            "abc123"
+            Jot.encode(email: object.email)
         end
     end
 end
