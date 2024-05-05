@@ -3,5 +3,6 @@
 module Types
   class MutationType < Types::BaseObject
     field :add_review, mutation: Mutations::Reviews::Add
+    field :update_review, mutation: Mutations::Reviews::Update
   end
 end
