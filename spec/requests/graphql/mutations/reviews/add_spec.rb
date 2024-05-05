@@ -31,16 +31,15 @@ RSpec.describe "GraphQL, addReview mutation" do
     QUERY
 
     it "adds a new review" do
-      post "/graphql", params: {
+      graphql_request(
         query: query,
         variables: {
           id: repo.id,
           rating: "FIVE_STARS",
           comment: "What a repo!"
-        }
-      }, headers: {
-        Authorization: "Bearer #{Jot.encode({ email: user.email })}"
-      }
+        },
+        user: user,
+      )
 
       expect(response.parsed_body).not_to have_errors
       review = Review.last
@@ -54,16 +53,14 @@ RSpec.describe "GraphQL, addReview mutation" do
     end
 
     it "cannot add a review without a comment" do
-      post "/graphql", params: {
+      graphql_request(
         query: query,
         variables: {
           id: repo.id,
           rating: "FIVE_STARS",
           comment: ""
-        }
-      }, headers: {
-        Authorization: "Bearer #{Jot.encode({ email: user.email })}"
-      }
+        }, user: user
+      )
     
         expect(response.parsed_body).not_to have_errors
         expect(response.parsed_body["data"]).to eq(
