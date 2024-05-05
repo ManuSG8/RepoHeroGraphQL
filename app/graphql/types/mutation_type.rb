@@ -7,5 +7,7 @@ module Types
     field :delete_review, mutation: Mutations::Reviews::Delete
 
     field :add_category, mutation: Mutations::Categories::Add
+
+    field :signup, mutation: Mutations::Users::SignUp
   end
 end
