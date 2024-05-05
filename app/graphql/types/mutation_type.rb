@@ -9,5 +9,6 @@ module Types
     field :add_category, mutation: Mutations::Categories::Add
 
     field :signup, mutation: Mutations::Users::SignUp
+    field :login, mutation: Mutations::Users::Login
   end
 end
