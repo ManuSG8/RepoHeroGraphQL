@@ -1,7 +1,20 @@
 require 'rails_helper'
 RSpec.describe "GraphQL, updateReview mutation" do
     let!(:repo) { Repo.create!(name: "Repo Hero", url: "https://github.com/repohero/repohero") }
-    let!(:review) { repo.reviews.create!(comment: "Kind of good", rating: 3) }
+    let!(:user) do
+        User.create!(
+            email: "test@example.com",
+            password: "SecurePassword1",
+            name: "Test User",
+        )
+    end
+    let!(:review) do
+        repo.reviews.create!(
+        comment: "King of good",
+        rating: 3,
+        user: user
+        )
+        end
 
     it "updates a review" do
         query = <<~QUERY
