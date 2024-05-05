@@ -31,3 +31,5 @@ end
 gem "rspec-rails", "~> 6.1", :groups => [:development, :test]
 
 gem "graphql", "~> 2.3"
+
+gem "dry-monads", "~> 1.6"
