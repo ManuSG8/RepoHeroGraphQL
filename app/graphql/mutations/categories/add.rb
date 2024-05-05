@@ -1,6 +1,8 @@
 module Mutations
     module Categories
         class Add < BaseMutation
+            graphql_name "AddCategory"
+
             type Types::CategoryType, null: false
 
             argument :name, String, required: true

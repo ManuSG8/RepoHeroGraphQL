@@ -1,6 +1,8 @@
 module Mutations
     module Reviews
         class Add < BaseMutation
+            graphql_name "AddReview"
+
             type Types::ReviewType, null: false
             
             argument :repo_id, ID, required: true

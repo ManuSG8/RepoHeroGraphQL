@@ -1,6 +1,8 @@
 module Mutations
     module Reviews
         class Delete < BaseMutation
+            graphql_name "DeleteReview"
+
             type Types::ReviewType
 
             argument :review_id, ID, required: true
