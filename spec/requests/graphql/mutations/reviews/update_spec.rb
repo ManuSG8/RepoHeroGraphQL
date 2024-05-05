@@ -3,9 +3,9 @@ RSpec.describe "GraphQL, updateReview mutation" do
     let!(:repo) { Repo.create!(name: "Repo Hero", url: "https://github.com/repohero/repohero") }
     let!(:review) { repo.reviews.create!(comment: "Kind of good", rating: 3) }
 
-    it "edits an existing review" do
+    it "updates a review" do
         query = <<~QUERY
-        mutation ($id: ID!, $rating: String!, $comment: String!) {
+        mutation ($id: ID!, $rating: ReviewRating!, $comment: String!) {
             updateReview(input: { reviewId: $id, rating: $rating, comment: $comment }) {
                 rating
                 comment
@@ -17,7 +17,7 @@ RSpec.describe "GraphQL, updateReview mutation" do
             query: query,
             variables: {
                 id: repo.id,
-                rating: 5,
+                rating: "FOUR_STARS",
                 comment: "On further thought, amazing!"
             }
         }
@@ -25,7 +25,7 @@ RSpec.describe "GraphQL, updateReview mutation" do
         expect(response.parsed_body).not_to have_errors
         expect(response.parsed_body["data"]).to eq(
             "updateReview" => {
-                "rating" => 5,
+                "rating" => "FOUR_STARS",
                 "comment" => "On further thought, amazing!"
             }
         )

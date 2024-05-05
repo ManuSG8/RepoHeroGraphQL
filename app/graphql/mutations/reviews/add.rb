@@ -4,7 +4,7 @@ module Mutations
             type Types::ReviewType, null: false
             
             argument :repo_id, ID, required: true
-            argument :rating, String, required: true
+            argument :rating, Types::ReviewRating, required: true
             argument :comment, String, required: true
 
             def resolve(repo_id:, rating:, comment:)
